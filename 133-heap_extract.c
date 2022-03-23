@@ -34,8 +34,8 @@ heap_t *getNodeFromIndexBis(heap_t *root, int idx)
 	direction = (idx - 1) % 2;
 
 	if (direction == 0)
-		return (getNodeFromIndex(root, parentIdx)->left);
-	return (getNodeFromIndex(root, parentIdx)->right);
+		return (getNodeFromIndexBis(root, parentIdx)->left);
+	return (getNodeFromIndexBis(root, parentIdx)->right);
 }
 
 /**
