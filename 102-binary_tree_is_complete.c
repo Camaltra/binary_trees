@@ -12,7 +12,8 @@ size_t binary_tree_size(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 
-	return (binary_tree_size(tree->left) + binary_tree_size(tree->right) + 1);
+	return (binary_tree_size(tree->left) +
+			binary_tree_size(tree->right) + 1);
 }
 
 
@@ -27,15 +28,17 @@ size_t binary_tree_size(const binary_tree_t *tree)
 *	1 if the binary tree is complete
 *	0 otherwise
 */
-int binary_tree_is_complete_recursion(const binary_tree_t *tree, int idx, int nbNode)
+int binary_tree_is_complete_recursion(const binary_tree_t *tree, int idx,
+								int nbNode)
 {
 	if (!tree)
 		return (1);
 
 	if (idx >= nbNode)
 		return (0);
-	
-	return (binary_tree_is_complete_recursion(tree->left, 2 * idx + 1, nbNode) * binary_tree_is_complete_recursion(tree->right, 2 * idx + 2, nbNode));
+
+	return (binary_tree_is_complete_recursion(tree->left, 2 * idx + 1, nbNode)
+		* binary_tree_is_complete_recursion(tree->right, 2 * idx + 2, nbNode));
 }
 
 
