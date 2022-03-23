@@ -67,6 +67,9 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	int heightTree, numOfNodes;
 
+	if (!tree)
+		return (0);
+
 	heightTree = binary_tree_height(tree);
 	numOfNodes = binary_tree_size(tree);
 
