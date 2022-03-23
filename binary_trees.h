@@ -54,4 +54,5 @@ int binary_tree_is_complete(const binary_tree_t *tree);
 int binary_tree_is_complete_recursion(const binary_tree_t *tree, int idx, int nbNode);
 binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);
 void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));
+binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);
 #endif
