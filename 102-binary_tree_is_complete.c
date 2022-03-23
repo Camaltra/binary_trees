@@ -55,5 +55,8 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 {
 	int nbNode = binary_tree_size(tree);
 
+	if (!tree)
+		return (0);
+
 	return (binary_tree_is_complete_recursion(tree, 0, nbNode));
 }
