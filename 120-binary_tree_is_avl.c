@@ -24,13 +24,13 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 		if (tree->left->n > tree->parent->n)
 			return (0);
 	if (tree->left && tree->parent && tree->parent->right == tree)
-		if (tree->left->n < tree->parent->n)
+		if (tree->left->n > tree->parent->n)
 			return (0);
 
 	if ((tree->right && tree->right->n < tree->n))
 		return (0);
 	if (tree->right && tree->parent && tree->parent->left == tree)
-		if (tree->right->n > tree->parent->n)
+		if (tree->right->n < tree->parent->n)
 			return (0);
 	if (tree->right && tree->parent && tree->parent->right == tree)
 		if (tree->right->n < tree->parent->n)
