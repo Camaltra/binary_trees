@@ -49,6 +49,7 @@ bst_t *bst_remove(bst_t *root, int value)
  * rebalance - Rebalance the tree after the removed node
  *
  * @root: Pointer to the node to check if we need to rebalance
+ * @tmp: Pointer to the tmp node to rebalance
  *
  * Return: Anything, cause void function
  */
@@ -133,6 +134,8 @@ avl_t *avl_remove(avl_t *root, int value)
 	bst_remove(root, value);
 
 	rebalance(&root, ancestor);
+	rebalance(&root, ancestor->left);
+	rebalance(&root, ancestor->right);
 
 	return (root);
 }
