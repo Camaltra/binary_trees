@@ -32,7 +32,7 @@ size_t binary_tree_height(const binary_tree_t *tree)
 * binary_tree_is_bst - function that checks if a binary tree
 *	is a valid Binary Search Tree
 *
-* @tree: ter to the root node of the tree to check
+* @tree: pointer to the root node of the tree to check
 *
 * Return:
 *	1 if tree is a valid BST
@@ -43,14 +43,22 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 	if (!tree)
 		return (1);
 
-	if ((tree->left && tree->left->n > tree->n) ||
-		(tree->left && tree->parent && tree->parent->left == tree && tree->left->n > tree->parent->n) ||
-		(tree->left && tree->parent && tree->parent->right == tree && tree->left->n < tree->parent->n))
+	if ((tree->left && tree->left->n > tree->n))
+		return (0);
+	if (tree->left && tree->parent && tree->parent->left == tree)
+		if (tree->left->n > tree->parent->n)
+			return (0);
+	if (tree->left && tree->parent && tree->parent->right == tree)
+		if (tree->left->n < tree->parent->n)
 			return (0);
 
-	if ((tree->right && tree->right->n < tree->n) ||
-		(tree->right && tree->parent && tree->parent->left == tree && tree->right->n > tree->parent->n) ||
-		(tree->right && tree->parent && tree->parent->right == tree && tree->right->n < tree->parent->n))
+	if ((tree->right && tree->right->n < tree->n))
+		return (0);
+	if (tree->right && tree->parent && tree->parent->left == tree)
+		if (tree->right->n > tree->parent->n)
+			return (0);
+	if (tree->right && tree->parent && tree->parent->right == tree)
+		if (tree->right->n < tree->parent->n)
 			return (0);
 
 	return (binary_tree_is_bst(tree->left) * binary_tree_is_bst(tree->right));
@@ -58,7 +66,7 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 
 
 /**
-* binary_tree_is_bst - function that checks if a binary tree
+* binary_tree_is_avl - function that checks if a binary tree
 *	is a valid AVL Tree
 *
 * @tree: ter to the root node of the tree to check

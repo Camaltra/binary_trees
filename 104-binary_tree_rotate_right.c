@@ -5,9 +5,7 @@
 *
 * @tree: Pointer to the tree
 *
-* Return:
-*	Pointer to the new root of the tree
-*	NULL if no rotation
+* Return: Pointer to the new root of the tree
 */
 binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree)
 {
@@ -25,10 +23,10 @@ binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree)
 	tree->parent = leftNode;
 	if (leftNode->parent)
 	{
-		if (leftNode->parent->right == tree)
-			leftNode->parent->right = leftNode;
-		else
+		if (leftNode->parent->left == tree)
 			leftNode->parent->left = leftNode;
+		else
+			leftNode->parent->right = leftNode;
 	}
 	return (leftNode);
 }
