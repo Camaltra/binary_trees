@@ -52,38 +52,41 @@ bst_t *bst_remove(bst_t *root, int value)
  *
  * Return: Anything, cause void function
  */
-void rebalance(avl_t *root)
+void rebalance(avl_t **root, avl_t *tmp)
 {
-	avl_t *tmp = root;
-
 	while (tmp)
 	{
 		if (binary_tree_balance(tmp) > 1 && binary_tree_balance(tmp->left) > 0)
 		{
-			if (root == tmp)
-				root = tmp->left->right;
+			if ((*root) == tmp)
+				(*root) = tmp->left->right;
 			binary_tree_rotate_left(tmp->left);
 			binary_tree_rotate_right(tmp);
+			printf("LEFT AND RIGHT");
 		}
 		else if (binary_tree_balance(tmp) > 1 && binary_tree_balance(tmp->left) <= 0)
 		{
-			if (root == tmp)
-				root = tmp->left;
+			if ((*root) == tmp)
+				(*root) = tmp->left;
 			binary_tree_rotate_right(tmp);
+			printf("RIGHT");
 		}
 		else if (binary_tree_balance(tmp) < -1 &&
 				binary_tree_balance(tmp->right) > 0)
 		{
-			if (root == tmp)
-				root = tmp->right->left;
+			if ((*root) == tmp)
+				(*root) = tmp->right->left;
 			binary_tree_rotate_right(tmp->right);
 			binary_tree_rotate_left(tmp);
+			printf("RIGHT AND LEFT");
 		}
 		else if (binary_tree_balance(tmp) < -1 &&
 				binary_tree_balance(tmp->right) <= 0)
 		{
-			if (root == tmp)
-				root = tmp->right;
+			if ((*root) == tmp)
+				(*root) = tmp->right;
+			printf("LEFT\n");
+			printf("%d\n", tmp->n);
 			binary_tree_rotate_left(tmp);
 		}
 
@@ -134,9 +137,7 @@ avl_t *avl_remove(avl_t *root, int value)
 
 	bst_remove(root, value);
 
-	rebalance(ancestor);
-	rebalance(root->right);
-	rebalance(root->left);
+	rebalance(&root, ancestor);
 
 	return (root);
 }
