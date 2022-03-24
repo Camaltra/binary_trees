@@ -134,9 +134,9 @@ avl_t *avl_remove(avl_t *root, int value)
 
 	bst_remove(root, value);
 
+	rebalance(ancestor);
 	rebalance(root->right);
 	rebalance(root->left);
 
-	rebalance(ancestor);
 	return (root);
 }
