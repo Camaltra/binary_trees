@@ -12,7 +12,8 @@ size_t binary_tree_size_bis(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 
-	return (binary_tree_size_bis(tree->left) + binary_tree_size_bis(tree->right) + 1);
+	return (binary_tree_size_bis(tree->left) +
+			binary_tree_size_bis(tree->right) + 1);
 }
 
 /**
