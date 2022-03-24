@@ -84,7 +84,7 @@ void rebalance(avl_t *root)
 		{
 			if (root == tmp)
 				root = tmp->right;
-			tmp = binary_tree_rotate_left(tmp);
+			binary_tree_rotate_left(tmp);
 		}
 
 		tmp = tmp->parent;
@@ -133,6 +133,12 @@ avl_t *avl_remove(avl_t *root, int value)
 		ancestor = ancestor->parent;
 
 	bst_remove(root, value);
+
+	if (ancestor == root)
+	{
+		rebalance(ancestor->right);
+		rebalance(ancestor->left);
+	}
 
 	rebalance(ancestor);
 	return (root);
