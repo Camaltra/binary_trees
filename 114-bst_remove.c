@@ -11,8 +11,7 @@
 */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	bst_t *successor;
-	int tmp;
+	bst_t *tmp, *parent, *successor;
 
 	if (!root)
 		return (root);
@@ -32,15 +31,16 @@ bst_t *bst_remove(bst_t *root, int value)
 			successor = root->right;
 			while (successor->left)
 				successor = successor->left;
-			tmp = successor->n;
-			bst_remove(root, successor->n);
-			root->n = tmp;
+			root->n = successor->n;
+			root->right = bst_remove(root->right, successor->n);
 		}
-		else
+		else if (!root->right || !root->left)
 		{
-			successor = root->left ? root->left : root->right;
-			free(root);
-			root = successor;
+			tmp = root;
+			parent = root->parent;
+			root = root->left ? root->left : root->right;
+			root->parent = parent;
+			free (tmp);
 		}
 	}
 	return (root);
