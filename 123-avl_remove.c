@@ -134,11 +134,8 @@ avl_t *avl_remove(avl_t *root, int value)
 
 	bst_remove(root, value);
 
-	if (ancestor == root)
-	{
-		rebalance(ancestor->right);
-		rebalance(ancestor->left);
-	}
+	rebalance(root->right);
+	rebalance(root->left);
 
 	rebalance(ancestor);
 	return (root);
