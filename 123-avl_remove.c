@@ -62,14 +62,12 @@ void rebalance(avl_t **root, avl_t *tmp)
 				(*root) = tmp->left->right;
 			binary_tree_rotate_left(tmp->left);
 			binary_tree_rotate_right(tmp);
-			printf("LEFT AND RIGHT");
 		}
 		else if (binary_tree_balance(tmp) > 1 && binary_tree_balance(tmp->left) <= 0)
 		{
 			if ((*root) == tmp)
 				(*root) = tmp->left;
 			binary_tree_rotate_right(tmp);
-			printf("RIGHT");
 		}
 		else if (binary_tree_balance(tmp) < -1 &&
 				binary_tree_balance(tmp->right) > 0)
@@ -78,15 +76,12 @@ void rebalance(avl_t **root, avl_t *tmp)
 				(*root) = tmp->right->left;
 			binary_tree_rotate_right(tmp->right);
 			binary_tree_rotate_left(tmp);
-			printf("RIGHT AND LEFT");
 		}
 		else if (binary_tree_balance(tmp) < -1 &&
 				binary_tree_balance(tmp->right) <= 0)
 		{
 			if ((*root) == tmp)
 				(*root) = tmp->right;
-			printf("LEFT\n");
-			printf("%d\n", tmp->n);
 			binary_tree_rotate_left(tmp);
 		}
 
